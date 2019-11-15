@@ -1,16 +1,16 @@
-entity_id,"category_name","is_active","url_key","description","image","page_title","meta_keywords","meta_description","include_in_navigation_menu","display_mode","is_anchor","price_step","use_parent_category","active_from","active_to"
-,"Women",1,"Women","Women","plp-w-blouses.jpg","Women","Women","Women",1,1,1,100,2,2019-12-28,2019-12-28
-,"Women/Tops & Blouses",1,"Tops","Tops","plp-eye.jpg","Tops","Women","Tops",1,2,1,200,3,2019-12-28,2019-12-28
-,"Women/Pants & Denim",1,"Denim","Denim","Womenpantsimg.jpg","Denim","Women","Denim",1,3,1,100,4,2019-12-28,2019-12-28
-,"Women/Dresses & Skirts",1,"Dresses","Dresses","Womentopsimg.jpg","Dresses","Women","Dresses",1,1,1,100,5,2019-12-28,2019-12-28
-,"Women/Dresses & Skirts/Tops",1,"Dresses","Dresses","Womentopsimg.jpg","Dresses","Women","Dresses",1,1,1,100,2,2019-12-28,2019-12-28
-,"Men",1,"Men","Men","catmen-newimg.jpg","Men","Men","Men",1,2,0,200,2,,
-,"Men/Shirts",1,"Shirts","Shirts","mencat-newarrivalsimg.jpg","Shirts","Men","Shirts",1,3,0,1000,45,,
-,"Men/Tees, Knits and Polos",1,"Tees","Tees","clp-sub-m-shirts.jpg","Tees","Men","Tees",1,2,0,4400,4,,
-,"Men/Blazers",1,"Blazers","Blazers","Mencat-teesimg.jpg","Blazers","Men","Blazers",1,1,0,1100,7,,
-,"Accessories",1,"Accessories","Accessories","Cataccessoriesmainimg.jpg","Accessories","Accessories","Accessories",1,1,1,111,7,2019-12-28,2019-12-28
-,"Accessories/Eyewear",1,"Eyewear","Eyewear","catwomen-newimg.jpg","Eyewear","Accessories","Eyewear",1,2,1,222,64,2019-12-28,2019-12-28
-,"Accessories/Jewelry",1,"Jewelry","Jewelry","acessoreiesjeweleryimg.jpg","Jewelry","Accessories","Jewelry",1,2,1,444,8,2019-12-28,2019-12-28
-,"Accessories/Shoes",1,"Shoes","Shoes","accessoriesshoesimg.jpg","Shoes","Accessories","Shoes",1,3,1,333,7,2019-12-28,2019-12-28
-,"Accessories/Bags",1,"Bags","Bags","Accessoriesbagimg.jpg","Bags","Accessories","Bags",1,3,1,211,8,2019-12-28,2019-12-28
-,"Accessories/Bags/Luggage",1,"Luggage","Luggage","accessorieseyewearimg.jpg","Luggage","Accessories","Luggage",1,3,1,122,9,2019-12-28,2019-12-28
+entity_id,"category_name","is_active","url_key","description","page_title","meta_keywords","meta_description","include_in_navigation_menu","display_mode","is_anchor","price_step","use_parent_category","active_from","active_to"
+,"Women",1,"Women","Women","Women","Women","Women",1,1,1,100,2,"2019-12-28","2019-12-28"
+,"Women/Tops & Blouses",1,"Tops","Tops","Tops","Women","Tops",1,2,1,200,3,"2019-12-28","2019-12-28"
+,"Women/Pants & Denim",1,"Denim","Denim","Denim","Women","Denim",1,3,1,100,4,"2019-12-28","2019-12-28"
+,"Women/Dresses & Skirts",1,"Dresses","Dresses","Dresses","Women","Dresses",1,1,1,100,5,"2019-12-28","2019-12-28"
+,"Women/Dresses & Skirts/Tops",1,"Dresses","Dresses","Dresses","Women","Dresses",1,1,1,100,2,"2019-12-28","2019-12-28"
+,"Men",1,"Men","Men","Men","Men","Men",1,2,0,200,2,,
+,"Men/Shirts",1,"Shirts","Shirts","Shirts","Men","Shirts",1,3,0,1000,45,,
+,"Men/Tees, Knits and Polos",1,"Tees","Tees","Tees","Men","Tees",1,2,0,4400,4,,
+,"Men/Blazers",1,"Blazers","Blazers","Blazers","Men","Blazers",1,1,0,1100,7,,
+,"Accessories",1,"Accessories","Accessories","Accessories","Accessories","Accessories",1,1,1,111,7,"2019-12-28","2019-12-28"
+,"Accessories/Eyewear",1,"Eyewear","Eyewear","Eyewear","Accessories","Eyewear",1,2,1,222,64,"2019-12-28","2019-12-28"
+,"Accessories/Jewelry",1,"Jewelry","Jewelry","Jewelry","Accessories","Jewelry",1,2,1,444,8,"2019-12-28","2019-12-28"
+,"Accessories/Shoes",1,"Shoes","Shoes","Shoes","Accessories","Shoes",1,3,1,333,7,"2019-12-28","2019-12-28"
+,"Accessories/Bags",1,"Bags","Bags","Bags","Accessories","Bags",1,3,1,211,8,"2019-12-28","2019-12-28"
+,"Accessories/Bags/Luggage",1,"Luggage","Luggage","Luggage","Accessories","Luggage",1,3,1,122,9,"2019-12-28","2019-12-28"

@@ -62,7 +62,6 @@ class CustomImport extends AbstractEntity
         'meta_description',
         'include_in_navigation_menu',
         'display_mode',
-//        'cms_block',
         'is_anchor',
         'available_sort_by',
         'default_product_listing',
@@ -165,7 +164,9 @@ class CustomImport extends AbstractEntity
         // The Y ( 4 digits year ) returns TRUE for any integer with any number of digits so changing the comparison from == to === fixes the issue.
         return $d && $d->format($format) === $date;
     }
-
+    function array_is_unique($array) {
+        return array_unique($array) == $array;
+    }
      /**
      * Row validation
      *
@@ -183,14 +184,9 @@ class CustomImport extends AbstractEntity
             $url_key = $rowData['url_key'] ?? '';
             $include_in_navigation_menu = (int)$rowData['include_in_navigation_menu'] ?? 0;
             $display_mode = (int)$rowData['display_mode'] ?? 0;
-            //$cms_block = (int)$rowData['cms_block'] ?? 0;
             $is_anchor = (int)$rowData['is_anchor'] ?? 0;
-            $available_sort_by = $rowData['available_sort_by'] ?? '';
-            $default_product_listing = (int)$rowData['default_product_listing'] ?? 0;
             $price_step = (int)$rowData['price_step'] ?? 0;
             $use_parent_category = (int)$rowData['use_parent_category'] ?? 0;
-            $apply_to_products = (int)$rowData['apply_to_products'] ?? 0;
-            $custom_design = (int)$rowData['custom_design'] ?? -1;
             $active_from = $rowData['active_from'] ?? '';
             $active_to = $rowData['active_to'] ?? '';
 
@@ -245,24 +241,11 @@ class CustomImport extends AbstractEntity
             if ($display_mode < 1 || $display_mode > 3) {
                 $this->addRowError('DisplayModeIsRequired', $rowNum);
             }
-//        if ($cms_block < 0 || $cms_block > 3) {
-//            $this->addRowError('CmsBlockIsRequired', $rowNum);
-//        }
 
             if ($is_anchor < 0 || $is_anchor > 1) {
                 $this->addRowError('IsAnchorIsRequired', $rowNum);
             }
-//        if (!$available_sort_by){
-//            $this->addRowError('AvailableSortByIsRequired', $rowNum);
-//        }
 
-            //Validate: product sort by name,position,price
-//        if (!$default_product_listing){
-//            $default_product_listing = 1;
-//        }
-//        if ($default_product_listing < 1 || $default_product_listing > 3) {
-//            $this->addRowError('DefaultProductListingIsRequired', $rowNum);
-//        }
             if ($price_step < 0) {
                 $this->addRowError('PriceStepIsRequired', $rowNum);
             }
@@ -279,15 +262,6 @@ class CustomImport extends AbstractEntity
                 }
             }
 
-
-//        if ($apply_to_products < 0) {
-//            $this->addRowError('ApplyToProductsIsRequired', $rowNum);
-//        }
-//        if ($custom_design < 1 || $custom_design >2){
-//            $this->addRowError('CustomDesignIsRequired', $rowNum);
-//        }
-
-
             if ($active_from != "" && $this->myValidateData($active_from) != true) {
                 // it's not a date
                 $this->addRowError('ActiveFromIsRequired', $rowNum);
@@ -301,16 +275,41 @@ class CustomImport extends AbstractEntity
 
         }elseif ($param['behavior'] == self::DELETE){
             $category_id = (int)$rowData['entity_id'] ?? 0;
+            array_push($GLOBALS['arrCategoryId'],$category_id);
+            $uniqueId = $this->array_is_unique($GLOBALS['arrCategoryId']);
             $ids = $this->getCollection()->getAllIds();
-            if (!$category_id || !in_array($category_id,$ids)){
+            if (!$category_id || !in_array($category_id,$ids) || !$uniqueId){
                 $this->addRowError('IdIsRequired', $rowNum);
             }
         }else{
-            $category_id = (int)$rowData['entity_id'] ?? 0;
-            $ids = $this->getCollection()->getAllIds();
-            if (!$category_id || !in_array($category_id,$ids)){
-                $this->addRowError('IdIsRequired', $rowNum);
+            $collection = $this->getCollection();
+            foreach ($collection as $data){
+                $value = $data->getData();
+                array_push($GLOBALS['arrCategoryName'],$value['name']);
+                if (isset($value['url_key']))
+                    array_push($GLOBALS['arrCategoryUrlKey'],$value['url_key']);
             }
+            $category_id = (int)$rowData['entity_id'] ?? 0;
+            $category_name = $rowData['category_name'] ?? '';
+            $url_key = $rowData['url_key'] ?? '';
+            array_push($GLOBALS['arrCategoryId'],$category_id);
+            if (isset($category_name))
+                array_push($GLOBALS['arrCategoryName'],$category_name);
+            if (isset($url_key))
+                array_push($GLOBALS['arrCategoryUrlKey'],$url_key);
+            $uniqueId = $this->array_is_unique($GLOBALS['arrCategoryId']);
+            $uniqueName = $this->array_is_unique($GLOBALS['arrCategoryName']);
+            $uniqueUrlKey = $this->array_is_unique($GLOBALS['arrCategoryUrlKey']);
+            $ids = $collection->getAllIds();
+            if (!$category_id || !in_array($category_id,$ids)){
+                $this->addRowError('IdNotExistIsRequired', $rowNum);
+            }
+            if (!$uniqueId)
+                $this->addRowError('uniqueIdIsRequired', $rowNum);
+            if (!$uniqueName)
+                $this->addRowError('uniqueNameIsRequired', $rowNum);
+            if (!$uniqueUrlKey)
+                $this->addRowError('uniqueUrlKeyIsRequired', $rowNum);
         }
 
 
