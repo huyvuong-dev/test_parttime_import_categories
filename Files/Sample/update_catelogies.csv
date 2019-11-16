@@ -1,0 +1,15 @@
+entity_id,"name","category_name","is_active"
+5,"Women","Women",1
+6,"Tops & Blouses","Women/Tops & Blouses",1
+7,"Pants & Denim","Women/Pants & Denim",1
+8,"Dresses & Skirts","Women/Dresses & Skirts",1
+9,"Tops","Women/Dresses & Skirts/Tops",1
+10,"Men","Men",1
+11,"Shirts","Men/Shirts",1
+12,"Tees, Knits and Polos","Men/Tees, Knits and Polos",1
+13,"Blazers","Men/Blazers",1
+14,"Womens","Womens",0
+15,"Tops & Blouses","Womens/Tops & Blouses",0
+16,"Pants & Denim","Womens/Pants & Denim",0
+17,"Dresses & Skirts","Womens/Dresses & Skirts",0
+18,"Tops","Womens/Dresses & Skirts/Tops",0

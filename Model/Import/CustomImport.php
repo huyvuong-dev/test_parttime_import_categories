@@ -120,7 +120,7 @@ class CustomImport extends AbstractEntity
         $this->resource = $resource;
         $this->connection = $resource->getConnection(ResourceConnection::DEFAULT_CONNECTION);
         $this->errorAggregator = $errorAggregator;
-        $this->initMessageTemplates();
+
     }
 
     /**
@@ -195,10 +195,10 @@ class CustomImport extends AbstractEntity
             $col = $this->getCollection();
             //Condition validate
             foreach ($col as $data){
-                if (!in_array($data->getName(),$GLOBALS['arrCategoryName'])){
+                if (!in_array(strtolower($data->getName()),$GLOBALS['arrCategoryName'])){
                     array_push($GLOBALS['arrCategoryName'],strtolower($data->getName()));
                 }
-                if(!in_array($data->getUrlKey(),$GLOBALS['arrCategoryUrlKey'])){
+                if(!in_array(strtolower($data->getUrlKey()),$GLOBALS['arrCategoryUrlKey'])){
                     array_push($GLOBALS['arrCategoryUrlKey'],strtolower($data->getUrlKey()));
                 }
                 if (!in_array($data->getId(),$GLOBALS['arrCategoryId'])){
@@ -284,19 +284,21 @@ class CustomImport extends AbstractEntity
         }else{
             $collection = $this->getCollection();
             foreach ($collection as $data){
-                $value = $data->getData();
-                array_push($GLOBALS['arrCategoryName'],$value['name']);
-                if (isset($value['url_key']))
-                    array_push($GLOBALS['arrCategoryUrlKey'],$value['url_key']);
+                if (!in_array(strtolower($data->getName()),$GLOBALS['arrCategoryName'])){
+                    array_push($GLOBALS['arrCategoryName'],strtolower($data->getName()));
+                }
+                if(!in_array(strtolower($data->getUrlKey()),$GLOBALS['arrCategoryUrlKey'])){
+                    array_push($GLOBALS['arrCategoryUrlKey'],strtolower($data->getUrlKey()));
+                }
             }
             $category_id = (int)$rowData['entity_id'] ?? 0;
             $category_name = $rowData['category_name'] ?? '';
             $url_key = $rowData['url_key'] ?? '';
             array_push($GLOBALS['arrCategoryId'],$category_id);
             if (isset($category_name))
-                array_push($GLOBALS['arrCategoryName'],$category_name);
+                array_push($GLOBALS['arrCategoryName'],strtolower($category_name));
             if (isset($url_key))
-                array_push($GLOBALS['arrCategoryUrlKey'],$url_key);
+                array_push($GLOBALS['arrCategoryUrlKey'],strtolower($url_key));
             $uniqueId = $this->array_is_unique($GLOBALS['arrCategoryId']);
             $uniqueName = $this->array_is_unique($GLOBALS['arrCategoryName']);
             $uniqueUrlKey = $this->array_is_unique($GLOBALS['arrCategoryUrlKey']);
@@ -548,20 +550,6 @@ class CustomImport extends AbstractEntity
         return $this->validColumnNames;
     }
 
-    /**
-     * Init Error Messages
-     */
-    private function initMessageTemplates()
-    {
-        $this->addMessageTemplate(
-            'NameIsRequired',
-            __('The name cannot be empty.')
-        );
-        $this->addMessageTemplate(
-            'DurationIsRequired',
-            __('Duration should be greater than 0.')
-        );
-    }
 
 }
 
